@@ -1,50 +1,59 @@
-# Informe breve — Taller Autoencoders y CvT
+# Informe breve — Taller de Autoencoders y CvT
 
-## Descripción general
+## Introducción
 
-Este informe resume los resultados obtenidos en los dos puntos desarrollados en el taller de Deep Learning. El primer punto corresponde a la implementación de un autoencoder denso para reconstrucción de imágenes, mientras que el segundo punto aborda la clasificación multiclase sobre Fashion-MNIST usando un modelo simplificado tipo Convolutional Vision Transformer (CvT).
+El presente informe resume los resultados obtenidos en el desarrollo de dos ejercicios prácticos de Deep Learning. El primer ejercicio consistió en la implementación de un autoencoder denso orientado a reconstrucción de imágenes, mientras que el segundo abordó un problema de clasificación multiclase sobre Fashion-MNIST mediante un modelo simplificado de Convolutional Vision Transformer (CvT).
 
-## Punto 1 — Autoencoder
+La selección de los datasets respondió al objetivo específico de cada punto. En el caso del autoencoder, se utilizó MNIST por tratarse de un conjunto de imágenes simple, estandarizado y adecuado para tareas de compresión y reconstrucción visual. En cambio, para la clasificación se empleó Fashion-MNIST, ya que presenta una dificultad mayor debido a la similitud visual entre varias clases de prendas, lo que permite evaluar de mejor manera la capacidad discriminativa del modelo.
 
-En el primer punto se construyó un autoencoder denso con el objetivo de aprender una representación comprimida de las imágenes de entrada y luego reconstruirlas. Este enfoque permite observar cómo una red neuronal puede capturar las características más relevantes de los datos mediante una capa latente de menor dimensión.
+## Punto 1 — Autoencoder denso
 
-Durante el entrenamiento se monitoreó la pérdida del modelo para verificar si la reconstrucción mejoraba de manera progresiva. A medida que avanzaron las épocas, la pérdida disminuyó, lo que indica que el modelo aprendió a reconstruir mejor las imágenes originales.
+En el primer punto se construyó un autoencoder denso con el propósito de aprender una representación comprimida de las imágenes de entrada y posteriormente reconstruirlas. Este tipo de arquitectura resulta útil para estudiar cómo una red neuronal puede extraer las características esenciales de un conjunto de datos y utilizarlas para aproximar nuevamente la entrada original.
 
-### Gráfica de pérdida del autoencoder
+Durante el entrenamiento se observó la evolución de la pérdida, con el objetivo de verificar si el modelo mejoraba progresivamente su capacidad de reconstrucción. La disminución de esta métrica indica que el autoencoder logró aprender patrones relevantes del conjunto de imágenes.
+
+### Pérdida del entrenamiento
 
 ![Pérdida del autoencoder](outputs/autoencoder_loss.png)
-### Resultados del autoencoder
 
-Los resultados obtenidos muestran que el modelo fue capaz de generar reconstrucciones razonables de las imágenes de entrada. Además, la disminución de la pérdida durante el entrenamiento sugiere que la arquitectura fue adecuada para el objetivo planteado.
+La curva de pérdida evidencia un proceso de aprendizaje estable, en el que el error de reconstrucción disminuye a medida que avanzan las épocas. Este comportamiento es consistente con un modelo que está logrando capturar una representación latente útil de los datos de entrada.
 
-Si se generaron imágenes comparativas entre originales y reconstruidas, se pueden incluir a continuación:
+### Reconstrucciones obtenidas
 
 ![Reconstrucciones del autoencoder](outputs/autoencoder_reconstructions.png)
 
-## Punto 2 — Clasificación con CvT simplificado
+Las reconstrucciones generadas muestran que el modelo fue capaz de conservar la estructura principal de las imágenes originales. Aunque es esperable cierta pérdida de detalle al pasar por una representación comprimida, los resultados obtenidos permiten concluir que el autoencoder cumplió adecuadamente su objetivo.
 
-En el segundo punto se implementó un modelo basado en una versión simplificada de Convolutional Vision Transformer para clasificar imágenes del dataset Fashion-MNIST. La arquitectura combina una etapa convolucional inicial para extraer características locales con bloques Transformer que permiten capturar relaciones globales entre los tokens generados.
+## Punto 2 — Clasificación multiclase con CvT simplificado
 
-Primero se realizó una prueba con un subconjunto reducido de datos para validar que el flujo del modelo funcionara correctamente. Posteriormente se entrenó el modelo con el conjunto completo, observando una mejora progresiva tanto en entrenamiento como en validación.
+En el segundo punto se implementó un modelo basado en una versión simplificada de Convolutional Vision Transformer para clasificar imágenes del dataset Fashion-MNIST. La arquitectura combina una etapa inicial convolucional, orientada a extraer características locales, con bloques Transformer que permiten modelar relaciones globales entre los tokens generados a partir de la imagen.
+
+Como parte de la metodología, primero se realizó un entrenamiento de prueba con un subconjunto reducido de datos. Esta etapa permitió validar que la arquitectura, la compilación y el flujo completo del entrenamiento funcionaran correctamente antes de proceder al entrenamiento final con el conjunto completo.
 
 ### Curvas de entrenamiento
 
 ![Curvas de entrenamiento CvT](outputs/cvt_training_curves.png)
 
-Las curvas muestran que la accuracy aumentó de forma estable a lo largo de las épocas, mientras que la pérdida disminuyó progresivamente. Además, el comportamiento entre entrenamiento y validación fue bastante consistente, lo que sugiere que el modelo logró generalizar razonablemente bien sin presentar un sobreajuste severo.
+Las curvas obtenidas muestran una mejora progresiva de la accuracy y una disminución sostenida de la pérdida, tanto en entrenamiento como en validación. Además, la proximidad entre ambas curvas sugiere que el modelo logró generalizar razonablemente bien, sin presentar señales fuertes de sobreajuste durante las diez épocas ejecutadas.
 
-### Evaluación final
+### Resultados finales
 
-El modelo alcanzó una accuracy final de **82.41%** sobre el conjunto de prueba, con una pérdida de **0.5014**. Estos resultados indican que la arquitectura fue capaz de clasificar correctamente la mayoría de las imágenes del dataset.
+El modelo alcanzó una accuracy final de **82.41%** sobre el conjunto de prueba, con una pérdida de **0.5014**. Estos resultados indican que la arquitectura propuesta fue capaz de aprender una representación útil para distinguir correctamente la mayoría de las clases presentes en Fashion-MNIST.
 
 ### Matriz de confusión
 
 ![Matriz de confusión](outputs/confusion_matrix.png)
 
-El análisis por clase mostró un desempeño particularmente alto en las clases 1, 5, 7, 8 y 9. En contraste, la clase 6 presentó la mayor dificultad, con un recall más bajo y una mayor confusión con otras clases visualmente similares. Esto se puede observar con claridad en la matriz de confusión.
+La matriz de confusión permite analizar con mayor detalle el comportamiento por clase. Se observa un desempeño particularmente sólido en las clases 1, 5, 7, 8 y 9, donde el modelo presenta altos niveles de precisión y recall. En contraste, la clase 6 fue la más difícil de clasificar, lo que sugiere una mayor similitud visual con otras prendas del dataset y, por tanto, una mayor ambigüedad para el modelo.
+
+## Discusión
+
+Los resultados obtenidos en ambos puntos muestran dos aplicaciones distintas de redes neuronales profundas sobre problemas de visión por computador. En el primer caso, el interés estuvo centrado en la reconstrucción de información mediante una representación comprimida; en el segundo, en la discriminación entre clases visualmente similares. Por esta razón, el uso de MNIST en el autoencoder y de Fashion-MNIST en la clasificación no solo es válido, sino también metodológicamente coherente con el objetivo de cada experimento.
+
+Asimismo, los resultados del modelo CvT simplificado muestran que la combinación de convolución y mecanismos de atención constituye una estrategia efectiva incluso en un escenario controlado como Fashion-MNIST. Aunque todavía existen clases difíciles, el rendimiento global obtenido confirma que la arquitectura implementada es adecuada para resolver el problema planteado.
 
 ## Conclusión
 
-Los dos experimentos permitieron aplicar conceptos relevantes de Deep Learning en tareas distintas. En el primer punto, el autoencoder logró aprender representaciones comprimidas útiles para reconstrucción de imágenes. En el segundo punto, el modelo CvT simplificado obtuvo un desempeño sólido en clasificación multiclase sobre Fashion-MNIST, alcanzando un 82.41% de accuracy en prueba.
+El desarrollo del taller permitió aplicar arquitecturas de Deep Learning a dos tareas complementarias. Por una parte, el autoencoder demostró ser capaz de aprender una representación comprimida útil para reconstruir imágenes de MNIST. Por otra, el modelo CvT simplificado alcanzó un desempeño sólido en clasificación multiclase sobre Fashion-MNIST, logrando una accuracy de 82.41% en prueba.
 
-En conjunto, los resultados muestran que tanto las arquitecturas de reconstrucción como las orientadas a clasificación pueden resolver adecuadamente problemas visuales, siempre que el diseño del modelo y el proceso de entrenamiento estén alineados con el objetivo de la tarea.
+En términos generales, los resultados muestran que la elección del dataset, la arquitectura utilizada y el seguimiento de métricas durante el entrenamiento fueron consistentes con los objetivos de cada punto. Esto permite concluir que la solución desarrollada cumple con los requerimientos del taller tanto en su componente práctico como en el análisis de los resultados obtenidos.
