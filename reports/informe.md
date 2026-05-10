@@ -14,13 +14,13 @@ Durante el entrenamiento se observó la evolución de la pérdida, con el objeti
 
 ### Pérdida del entrenamiento
 
-![Pérdida del autoencoder](outputs/autoencoder_loss.png)
+![Pérdida del autoencoder](../outputs/autoencoder_loss.png)
 
 La curva de pérdida evidencia un proceso de aprendizaje estable, en el que el error de reconstrucción disminuye a medida que avanzan las épocas. Este comportamiento es consistente con un modelo que está logrando capturar una representación latente útil de los datos de entrada.
 
 ### Reconstrucciones obtenidas
 
-![Reconstrucciones del autoencoder](outputs/autoencoder_reconstructions.png)
+![Reconstrucciones del autoencoder](../outputs/autoencoder_reconstructions.png)
 
 Las reconstrucciones generadas muestran que el modelo fue capaz de conservar la estructura principal de las imágenes originales. Aunque es esperable cierta pérdida de detalle al pasar por una representación comprimida, los resultados obtenidos permiten concluir que el autoencoder cumplió adecuadamente su objetivo.
 
@@ -32,7 +32,7 @@ Como parte de la metodología, primero se realizó un entrenamiento de prueba co
 
 ### Curvas de entrenamiento
 
-![Curvas de entrenamiento CvT](outputs/cvt_training_curves.png)
+![Curvas de entrenamiento CvT](../outputs/cvt_training_curves.png)
 
 Las curvas obtenidas muestran una mejora progresiva de la accuracy y una disminución sostenida de la pérdida, tanto en entrenamiento como en validación. Además, la proximidad entre ambas curvas sugiere que el modelo logró generalizar razonablemente bien, sin presentar señales fuertes de sobreajuste durante las diez épocas ejecutadas.
 
@@ -42,7 +42,7 @@ El modelo alcanzó una accuracy final de **82.41%** sobre el conjunto de prueba,
 
 ### Matriz de confusión
 
-![Matriz de confusión](outputs/confusion_matrix.png)
+![Matriz de confusión](../outputs/confusion_matrix.png)
 
 La matriz de confusión permite analizar con mayor detalle el comportamiento por clase. Se observa un desempeño particularmente sólido en las clases 1, 5, 7, 8 y 9, donde el modelo presenta altos niveles de precisión y recall. En contraste, la clase 6 fue la más difícil de clasificar, lo que sugiere una mayor similitud visual con otras prendas del dataset y, por tanto, una mayor ambigüedad para el modelo.
 
