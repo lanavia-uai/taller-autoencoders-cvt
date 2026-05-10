@@ -1,0 +1,34 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Jupyter / Colab
+.ipynb_checkpoints/
+*.nbconvert.ipynb
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Model files and checkpoints temporales
+*.h5
+*.ckpt
+*.index
+*.data-00000-of-00001
+
+# Carpetas de salida temporales
+outputs/tmp/
+outputs/cache/
+
+# Entornos virtuales
+venv/
+.venv/
+env/
+
+# Logs
+*.log
