@@ -5,13 +5,16 @@ Repositorio de entrega correspondiente al taller de Deep Learning, donde se impl
 1. Un autoencoder denso para compresión y reconstrucción de imágenes.
 2. Un modelo simplificado tipo Convolutional Vision Transformer (CvT) para clasificación multiclase sobre Fashion-MNIST.
 
-## Contenido del repositorio
+## Navegación del proyecto
 
-- `notebooks/`: notebooks principales del taller.
-- `reports/`: documento final o PDF de entrega.
-- `data/`: carpeta reservada para datos auxiliares si se requieren.
-- `requirements.txt`: dependencias necesarias para reproducir el entorno.
-- `.gitignore`: exclusiones del repositorio.
+### Notebooks
+- [Punto 1 — Autoencoder denso](notebooks/01_autoencoder_dense.ipynb)
+- [Punto 2 — Clasificación con CvT simplificado](notebooks/02_cvt_classification_fashion_mnist_full_data.ipynb)
+
+### Informe
+- [Informe final del taller](reports/README.md)
+
+
 
 ## Proyecto 1: Autoencoder
 
@@ -42,9 +45,9 @@ El flujo incluye:
 El modelo final obtuvo una accuracy de prueba de aproximadamente 82.41% sobre Fashion-MNIST.  
 El análisis por clase mostró muy buen desempeño en varias categorías, mientras que la clase 6 presentó mayor dificultad por su mayor confusión con otras prendas visualmente similares.
 
-## Requisitos
+## Librerías usadas
 
-Instala las dependencias con:
+Dependencias:
 
 ```bash
 pip install -r requirements.txt
@@ -67,6 +70,7 @@ TALLER-AUTOENCODERS-CVT/
 │   └── 02_cvt_classification_fashion_mnist_full_data.ipynb
 ├── outputs/
 ├── reports/
+│   └── README.md
 ├── .gitignore
 ├── README.md
 └── requirements.txt
